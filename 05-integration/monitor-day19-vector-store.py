@@ -21,14 +21,14 @@ def real_scrape(url: str) -> None:
         except requests.exceptions.RequestException as e:
             print(f"day19 qdrant unreachable: {e}")
         time.sleep(15)
-
-
 def stub_emit() -> None:
     qdrant_collections = Gauge("day19_qdrant_collections", "Stub: Qdrant collection count")
     qdrant_search_total = Counter("day19_qdrant_search_total", "Stub: Qdrant search calls")
+    dpo_pass_rate = Gauge("day22_dpo_eval_pass_rate", "Stub: Day 22 DPO eval pass rate")
     start_http_server(9101)
-    print("Stub Day 19 metrics on :9101 (add to prometheus.yml as 'day19-stub')")
+    print("Stub Day 19 & 22 metrics on :9101 (add to prometheus.yml as 'day19-stub')")
     qdrant_collections.set(3)
+    dpo_pass_rate.set(0.92)
     while True:
         qdrant_search_total.inc()
         time.sleep(1)

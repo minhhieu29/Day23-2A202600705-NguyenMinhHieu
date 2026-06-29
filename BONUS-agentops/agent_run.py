@@ -38,6 +38,8 @@ TASKS = [
                                                   ("get_price", "SKU-2"), ("place_order", "SKU-2")],
      "expect": True},  # has a flaky tool -> tool error + retry
     {"goal": "So sánh giá (lỗi vòng lặp)", "plan": [("get_price", "SKU-1")] * 6, "expect": False},  # loop
+    {"goal": "Kiểm tra thời tiết rồi mua (ảo tưởng tool)", "plan": [("search", "shoes"), ("get_weather", "Hanoi"),
+                                                  ("place_order", "SKU-1")], "expect": False},
 ]
 MAX_STEPS = 8
 
@@ -83,7 +85,7 @@ def run_task(task, tracer):
                 sp.set_attribute(k, v)
             yield
 
-    steps = tool_calls = tool_errors = tokens = 0
+    steps = tool_calls = tool_errors = hallucinated_tool_calls = tokens = 0
     actions, success = [], False
     with span("invoke_agent", {"gen_ai.operation.name": "invoke_agent",
                                "gen_ai.agent.name": "shopbot", "agent.goal": task["goal"]}):
@@ -96,10 +98,20 @@ def run_task(task, tracer):
                                        "gen_ai.tool.name": tool}):
                 tool_calls += 1
                 try:
+                    if tool not in TOOLS:
+                        raise ValueError("hallucinated tool")
                     out = TOOLS[tool](arg)
                     tokens += out.get("tokens", 20)
                     if tool == "place_order":
                         success = True
+                except ValueError as e:
+                    if str(e) == "hallucinated tool":
+                        hallucinated_tool_calls += 1
+                        tokens += 15
+                        break
+                    else:
+                        tool_errors += 1
+                        tokens += 15
                 except Exception:
                     tool_errors += 1
                     tokens += 15  # the failed attempt still cost tokens
@@ -114,6 +126,7 @@ def run_task(task, tracer):
         "failure_modes": ([] if success and not looped else
                           (["loop/no-progress"] if looped else []) +
                           (["tool-error"] if tool_errors else []) +
+                          (["hallucinated-tool"] if hallucinated_tool_calls else []) +
                           ([] if success else ["task-failed"])),
     }
 

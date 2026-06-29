@@ -1,0 +1,88 @@
+
+--- Webhook received at 2026-06-29 11:06:52 ---
+{
+  "channel": "#oncall",
+  "username": "Alertmanager",
+  "attachments": [
+    {
+      "title": "\ud83d\udea8 CRITICAL: ServiceDown",
+      "title_link": "http://615f37d10f47:9093/#/alerts?receiver=slack-critical",
+      "text": "\n*inference-api is down*\nPrometheus has been unable to scrape inference-api for 1 minute.\n*Runbook:* \n\n",
+      "fallback": "[FIRING:1] ServiceDown inference-api (aicb-day23-lab lab app:8000 inference-api critical) | http://615f37d10f47:9093/#/alerts?receiver=slack-critical",
+      "callback_id": "",
+      "footer": "",
+      "color": "danger",
+      "mrkdwn_in": [
+        "fallback",
+        "pretext",
+        "text"
+      ]
+    }
+  ]
+}
+
+--- Webhook received at 2026-06-29 11:10:22 ---
+{
+  "channel": "#oncall",
+  "username": "Alertmanager",
+  "attachments": [
+    {
+      "title": "\ud83d\udea8 CRITICAL: ServiceDown",
+      "title_link": "http://615f37d10f47:9093/#/alerts?receiver=slack-critical",
+      "text": "\n*inference-api is down*\nPrometheus has been unable to scrape inference-api for 1 minute.\n*Runbook:* \n\n",
+      "fallback": "[FIRING:1] ServiceDown inference-api (aicb-day23-lab lab app:8000 inference-api critical) | http://615f37d10f47:9093/#/alerts?receiver=slack-critical",
+      "callback_id": "",
+      "footer": "",
+      "color": "danger",
+      "mrkdwn_in": [
+        "fallback",
+        "pretext",
+        "text"
+      ]
+    }
+  ]
+}
+
+--- Webhook received at 2026-06-29 11:13:22 ---
+{
+  "channel": "#oncall",
+  "username": "Alertmanager",
+  "attachments": [
+    {
+      "title": "\ud83d\udea8 CRITICAL: ServiceDown",
+      "title_link": "http://615f37d10f47:9093/#/alerts?receiver=slack-critical",
+      "text": "\n*inference-api is down*\nPrometheus has been unable to scrape inference-api for 1 minute.\n*Runbook:* \n\n",
+      "fallback": "[FIRING:1] ServiceDown inference-api (aicb-day23-lab lab app:8000 inference-api critical) | http://615f37d10f47:9093/#/alerts?receiver=slack-critical",
+      "callback_id": "",
+      "footer": "",
+      "color": "danger",
+      "mrkdwn_in": [
+        "fallback",
+        "pretext",
+        "text"
+      ]
+    }
+  ]
+}
+
+--- Webhook received at 2026-06-29 11:14:22 ---
+{
+  "channel": "#oncall",
+  "username": "Alertmanager",
+  "attachments": [
+    {
+      "title": "\ud83d\udea8 CRITICAL: ServiceDown",
+      "title_link": "http://615f37d10f47:9093/#/alerts?receiver=slack-critical",
+      "text": "\n*inference-api is down*\nPrometheus has been unable to scrape inference-api for 1 minute.\n*Runbook:* \n\n",
+      "fallback": "[RESOLVED] ServiceDown inference-api (aicb-day23-lab lab app:8000 inference-api critical) | http://615f37d10f47:9093/#/alerts?receiver=slack-critical",
+      "callback_id": "",
+      "footer": "",
+      "color": "good",
+      "mrkdwn_in": [
+        "fallback",
+        "pretext",
+        "text"
+      ]
+    }
+  ]
+}
